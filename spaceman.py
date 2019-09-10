@@ -13,6 +13,13 @@ def load_word():
     secret_word = random.choice(words_list)
     return secret_word
 
+# display = []
+
+# used = []
+
+# display.extend(secret_word)
+
+# used.extend(display)
 
 def is_word_guessed(secret_word, letters_guessed):
     for letter in secret_word:
@@ -34,13 +41,14 @@ def is_word_guessed(secret_word, letters_guessed):
     pass
 
 def get_guessed_word(secret_word, letters_guessed):
-    return_word = ""
+    return_word = " "
     for letter in secret_word:
         if letter in letters_guessed:
-            return_word +=letter
+            return_word +=letter + " "
         else:
-            return_word += '_'
+            return_word += " _ "
     return return_word
+    # print(return_word)
 
     '''
     A function that is used to get a string showing the letters guessed so far in the secret word and underscores for letters that have not been guessed yet.
@@ -87,22 +95,35 @@ def spaceman(secret_word):
     guesses_left = len(secret_word)
     #TODO: show the player information about the game according to the project spect
     
-    while guesses_left > 0 or not is_word_guessed(secret_word, letters_guessed):
+    while guesses_left > 0 and not is_word_guessed(secret_word, letters_guessed):
         letter_guess=input("Guess the secret word, one lowercase letter at a time. This word has "+str(len(secret_word))+" letters. You get "+str(guesses_left)+" chances before the spaceman repairs his ship and the game ends. Please choose a letter: ")
         if len(letter_guess) == 1 and letter_guess.isalpha():
-            pass
-            #TODO: Ask the player to guess one letter per round and check that it is only one letter
-        else: # Make the program robuist.The while loop ensures we get valid input
-            wnile not len(letter_guess) ==1 or not letter_guess.isalpha():
-                letter_guess=input("oops! Only one letter at a time please. Please try again. ")
-            
-        if is_guess_in_word(letter_guess, secret_word):
-            print("Great! You guessed correctly! Please choose another letter.")
-            print(letters_guessed)
-        else:
-            guesses_left = guesses_left -1
-            print("Sorry. You've got "+str(guesses_left)+" guesses left.")
+            if letter_guess == letters_guessed:
+                print("You've already guessed that letter")
+            else:
+                if is_guess_in_word(letter_guess, secret_word):
+                    letters_guessed.append(letter_guess)
+                    print("Great! You guessed correctly! Please choose another letter or guess the word.")
+                    print(get_guessed_word(secret_word, letters_guessed))
+                else:
+                    guesses_left = guesses_left -1
+                    print("Sorry. You've got "+str(guesses_left)+" guesses left.")
 
+            #TODO: Ask the player to guess one letter per round and check that it is only one letter
+        else: # Make the program robust.The while loop ensures we get valid input
+            while len(letter_guess) > 1 or not letter_guess.isalpha():
+                letter_guess=input("oops! Only one letter at a time please. Please try again. ")
+    else:
+        guesses_left = 0
+        print("You've guessed wrong too often, so I hate to break it to you bruh but.. GAME OVER")
+        
+        
+
+
+        print("Congrats dude you're a genius!")
+
+            
+               
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
 
     #TODO: show the guessed word so far
@@ -123,6 +144,5 @@ def spaceman(secret_word):
 still_running=True
 secret_word = load_word()
 if still_running: 
-    spaceman(secret_word) 
-
+    spaceman(secret_word)
     print("Thanks for playing, have a nice day!")
