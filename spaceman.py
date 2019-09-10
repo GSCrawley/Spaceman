@@ -1,4 +1,3 @@
-
 import random
 
 def load_word():
@@ -98,7 +97,7 @@ def spaceman(secret_word):
     while guesses_left > 0 and not is_word_guessed(secret_word, letters_guessed):
         letter_guess=input("Guess the secret word, one lowercase letter at a time. This word has "+str(len(secret_word))+" letters. You get "+str(guesses_left)+" chances before the spaceman repairs his ship and the game ends. Please choose a letter: ")
         if len(letter_guess) == 1 and letter_guess.isalpha():
-            if letter_guess == letters_guessed:
+            if letter_guess in letters_guessed:
                 print("You've already guessed that letter")
             else:
                 if is_guess_in_word(letter_guess, secret_word):
@@ -108,20 +107,24 @@ def spaceman(secret_word):
                 else:
                     guesses_left = guesses_left -1
                     print("Sorry. You've got "+str(guesses_left)+" guesses left.")
-
-            #TODO: Ask the player to guess one letter per round and check that it is only one letter
-        else: # Make the program robust.The while loop ensures we get valid input
+                    print(get_guessed_word(secret_word, letters_guessed))
+        else: 
             while len(letter_guess) > 1 or not letter_guess.isalpha():
                 letter_guess=input("oops! Only one letter at a time please. Please try again. ")
+
+    if is_word_guessed(secret_word, letters_guessed):
+                print("Congrats dude you're a genius!")
     else:
         guesses_left = 0
         print("You've guessed wrong too often, so I hate to break it to you bruh but.. GAME OVER")
         
+            #TODO: Ask the player to guess one letter per round and check that it is only one letter
+    
+           
         
 
 
-        print("Congrats dude you're a genius!")
-
+        
             
                
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
@@ -146,3 +149,22 @@ secret_word = load_word()
 if still_running: 
     spaceman(secret_word)
     print("Thanks for playing, have a nice day!")
+
+            
+               
+    #TODO: Check if the guessed letter is in the secret or not and give the player feedback
+
+    #TODO: show the guessed word so far
+
+    #TODO: check if the game has been won or lost
+  
+
+
+
+
+   
+# def test():
+#     # print(load_word())
+
+# test()
+
