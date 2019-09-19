@@ -29,8 +29,6 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
 
-    # # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-    pass
 
 def get_guessed_word(secret_word, letters_guessed):
     return_word = " "
@@ -52,8 +50,6 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
 
 
-    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
-
     pass
 
 
@@ -72,10 +68,7 @@ def is_guess_in_word(guess, secret_word):
     Returns:
         bool: True if the guess is in the secret_word, False otherwise
     '''
-    #TODO: check if the letter guess is in the secret word
-
-    pass
-
+    
 
 def spaceman(secret_word):
     '''
@@ -85,7 +78,7 @@ def spaceman(secret_word):
     '''
     letters_guessed = []
     guesses_left = len(secret_word)
-    #TODO: show the player information about the game according to the project spect
+    
     
     while guesses_left > 0 and not is_word_guessed(secret_word, letters_guessed):
         letter_guess=input("Guess the secret word, one lowercase letter at a time. This word has "+str(len(secret_word))+" letters. You get "+str(guesses_left)+" chances before the spaceman repairs his ship and the game ends. Please choose a letter: ")
@@ -107,7 +100,7 @@ def spaceman(secret_word):
         guesses_left = 0
         print("You've guessed wrong too often, so I hate to break it to you bruh but.. GAME OVER. By the way, the word you failed to guess was '"+secret_word+"'.")
         
-            #TODO: Ask the player to guess one letter per round and check that it is only one letter
+           
     
            #Restarting the game
 #Reference: https://stackoverflow.com/questions/48129942/python-restart-program
@@ -124,36 +117,7 @@ def restart():
 
 
         
-            
-               
-    #TODO: Check if the guessed letter is in the secret or not and give the player feedback
-
-    #TODO: show the guessed word so far
-
-    #TODO: check if the game has been won or lost
   
-def test_is_word_guessed():
-    assert is_word_guessed(('breast'),['b','r','e','a','s','t']) is True
-    assert is_word_guessed(('eggs'),['e','g','g','s']) is True
-    assert is_word_guessed(('butter'),['b','u','t','t','e','r']) is True
-
-def test_is_guess_in_word():
-    assert is_guess_in_word(('a'), ('apple')) is True
-    assert is_guess_in_word(('b'), ('banana')) is True
-    assert is_guess_in_word(('c'), ('carrot')) is True
-
-def test_get_guessed_word():
-    assert get_guessed_word(('table'), ['t','a','b','l']) == " t a b l  _ " 
-    assert get_guessed_word(('chair'), ['c','h','a','r']) == " c h a  _ r "
-    assert get_guessed_word(('carpet'), ['c','a','p','e','t']) == " c a  _ p e t "
-
-
-
-   
-# def test():
-#     # print(load_word())
-
-# test()
 #These function calls that will start the game
 if __name__=="__main__":
     secret_word = load_word()
